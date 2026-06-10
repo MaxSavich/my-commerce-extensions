@@ -64,3 +64,45 @@ runtimeManifest:
             require-adobe-auth: false
             final: true
             include-ims-credentials: true
+        order-event-consumer:
+          function: actions/labs/order-event-consumer/index.js
+          web: 'no'
+          runtime: nodejs:22
+          inputs:
+            LOG_LEVEL: debug
+            IMS_OAUTH_S2S_CLIENT_ID: $IMS_OAUTH_S2S_CLIENT_ID
+            IMS_OAUTH_S2S_CLIENT_SECRET: $IMS_OAUTH_S2S_CLIENT_SECRET
+            IMS_OAUTH_S2S_ORG_ID: $IMS_OAUTH_S2S_ORG_ID
+            IMS_OAUTH_S2S_SCOPES: $IMS_OAUTH_S2S_SCOPES
+            COMMERCE_API_BASE_URL: $COMMERCE_API_BASE_URL
+            COMMERCE_STORE_CODE: $COMMERCE_STORE_CODE
+          limits:
+            timeout: 60000
+            memorySize: 256
+          annotations:
+            require-adobe-auth: false
+            final: true
+        state-read:
+          function: actions/labs/state-read/index.js
+          web: 'yes'
+          runtime: nodejs:22
+          inputs:
+            LOG_LEVEL: info
+          limits:
+            timeout: 60000
+            memorySize: 256
+          annotations:
+            require-adobe-auth: false
+            final: true
+        validate-product:
+          function: actions/labs/validate-product/index.js
+          web: 'yes'
+          runtime: nodejs:22
+          inputs:
+            LOG_LEVEL: debug
+          limits:
+            timeout: 10000
+            memorySize: 256
+          annotations:
+            require-adobe-auth: false
+            final: true
