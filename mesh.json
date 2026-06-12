@@ -44,6 +44,22 @@
                         }
                     }
                 ]
+            },
+            {
+                "name": "Badges",
+                "handler": {
+                    "openapi": {
+                        "source": "./badges-openapi.json"
+                    }
+                },
+                "transforms": [
+                    {
+                        "prefix": {
+                            "value": "Badges_",
+                            "includeRootOperations": true
+                        }
+                    }
+                ]
             }
         ]
     }
