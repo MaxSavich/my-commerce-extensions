@@ -142,3 +142,17 @@ runtimeManifest:
           annotations:
             require-adobe-auth: false
             final: true
+        badge-event-consumer:
+          function: actions/capstone-badges/badge-event-consumer/index.js
+          web: 'no'
+          runtime: nodejs:22
+          inputs:
+            LOG_LEVEL: info
+            COMPUTE_BADGES_URL: $COMPUTE_BADGES_URL
+            GET_BADGES_URL: $GET_BADGES_URL
+          limits:
+            timeout: 30000
+            memorySize: 256
+          annotations:
+            require-adobe-auth: false
+            final: true
